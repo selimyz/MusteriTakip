@@ -10,14 +10,17 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tblmusteri")
+@Table(name = "tblcategory")
 @Entity
-public class Musteri {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
+    // Ana kategoriye bağlanma
+    long parentid;
     String ad;
-    String soyad;
-    String adres;
-
+    String url;
+    String image;
+    String description;
+    int state;
 }

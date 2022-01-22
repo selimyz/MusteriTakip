@@ -3,13 +3,12 @@ package com.selim.musteritakip.controller;
 import com.selim.musteritakip.dto.request.MusteriSaveDto;
 import com.selim.musteritakip.dto.response.MusteriResponseDto;
 import com.selim.musteritakip.repository.entity.Musteri;
-import com.selim.musteritakip.service.MusteriServices;
+import com.selim.musteritakip.service.MusteriService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class MusteriController {
 
     // Otomatik nesne oluşturma
     @Autowired
-    MusteriServices musteriServices;
+    MusteriService musteriService;
 
     /**
      * Bu Method Çağrıldığında (http://localhost:9090/v1/musteri/save)
@@ -38,7 +37,7 @@ public class MusteriController {
     @PostMapping(SAVE)
     @ApiOperation(value = "Müşteri Kayıt")
     public ResponseEntity<Void> save(String ad, String soyad, String adres) {
-        musteriServices.save(Musteri.builder().ad(ad).soyad(soyad).adres(adres).build());
+        musteriService.save(Musteri.builder().ad(ad).soyad(soyad).adres(adres).build());
         return ResponseEntity.ok().build();
     }
 
@@ -57,25 +56,25 @@ public class MusteriController {
     public ResponseEntity<Void> saveDto(@RequestBody @Valid MusteriSaveDto dto) {
         // NOT!! lütfen dto kayıt işlemlerini controller içinde yapmayın
         // DB kayıt işlemleri için kullanılarak kısım servisleridir.
-        musteriServices.save(dto);
+        musteriService.save(dto);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping(FINDALL)
     @ApiOperation(value = "Tüm Müşterileri Listeleme")
     public ResponseEntity<List<Musteri>> findAll() {
-        return ResponseEntity.ok(musteriServices.findAll());
+        return ResponseEntity.ok(musteriService.findAll());
     }
 
     @GetMapping("/findallresponse")
     @ApiOperation(value = "Tüm Müşterilerin DTO şeklinde dönülmesi")
     public ResponseEntity<List<MusteriResponseDto>> findAllResponse() {
-        return ResponseEntity.ok(musteriServices.findAllResponse());
+        return ResponseEntity.ok(musteriService.findAllResponse());
     }
 
     @GetMapping("/findallad")
     @ApiOperation(value = "Tüm Müşterilerin DTO şeklinde dönülmesi")
     public ResponseEntity<List<Musteri>> findAllAd(String ad) {
-        return ResponseEntity.ok(musteriServices.findAllName(ad));
+        return ResponseEntity.ok(musteriService.findAllName(ad));
     }
 }

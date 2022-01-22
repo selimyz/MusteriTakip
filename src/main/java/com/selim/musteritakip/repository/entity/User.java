@@ -10,14 +10,16 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tblmusteri")
+@Table(name = "tbluser")
 @Entity
-public class Musteri {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
-    String ad;
-    String soyad;
-    String adres;
-
+    String username;
+    String password;
+    String question;
+    String answer;
+    String email;
+    int state;
 }

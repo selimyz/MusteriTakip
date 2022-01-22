@@ -114,7 +114,7 @@
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="index.html" class="active">Ana Sayfa</a></li>
 								<li class="dropdown"><a href="#">Kategoriler<i class="fa fa-angle-down"></i></a>
-                                    <ul  role="menu" class="sub-menu">
+                                    <ul role="menu" class="sub-menu">
                                         <li th:each="ls: ${categorylist}"><a th:href="${ls.url}" th:text="${ls.ad}"></a></li>
                                     </ul>
                                 </li> 

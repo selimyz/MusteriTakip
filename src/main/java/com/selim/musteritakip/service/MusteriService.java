@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @Service
-public class MusteriServices {
+public class MusteriService {
 
     // NOT: Repository ler sınıf değildir. bu nedenle new lenemezler
     // Spring kendi interface ve diğer sınıflardan nesne üretmek için
